@@ -3,3 +3,4 @@
 *~
 .DS_Store
 .idea/
+pypa/__pycache__/
