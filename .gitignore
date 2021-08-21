@@ -1,3 +1,5 @@
 # Git ignore file with the following format
 *.[oa]
 *~
+.DS_Store
+.idea/
