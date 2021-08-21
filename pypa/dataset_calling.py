@@ -19,6 +19,7 @@ def get_data(name_dataset='index',
     :return data: loaded dataset (pandas.DataFrame)
     """
     import pandas as pd
+    import pandas_profiling
     import os.path
     from IPython.display import display, HTML, clear_output, update_display
 
@@ -36,6 +37,7 @@ def get_data(name_dataset='index',
     data_for_profiling = data.copy()
 
     if profile:
+        print("hello")
         import pandas_profiling
         pf = pandas_profiling.ProfileReport(data_for_profiling)
         display(pf)
