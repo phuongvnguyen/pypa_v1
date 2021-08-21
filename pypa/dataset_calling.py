@@ -36,6 +36,7 @@ def get_data(name_dataset='index',
     data_for_profiling = data.copy()
 
     if profile:
+        import pandas_profiling
         pf = pandas_profiling.ProfileReport(data_for_profiling)
         display(pf)
     else:
