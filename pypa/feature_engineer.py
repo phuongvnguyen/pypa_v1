@@ -43,7 +43,8 @@ def basic_feat_engineer(data, features_to_drop):
         df[i] = df[i].astype("object")
 
     # wiith csv , if we have any null in  a colum that was int , panda will read it as float.
-    # so first we need to convert any such floats that have NaN and unique values are lower than 20
+    # so first we need to convert any such floats that have NaN and unique values are
+    # lower than 20
     for i in df.select_dtypes(include=["float64"]).columns:
         df[i] = df[i].astype("float32")
         # count how many Nas are there
