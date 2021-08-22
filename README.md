@@ -6,6 +6,7 @@
 1. doing EDA.
 2. doing feature engineering.
 3. model development and evaluation.
+4. model tuning.
 
 One can use pypa locally by cloning it as follows.
 
