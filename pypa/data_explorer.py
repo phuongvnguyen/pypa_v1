@@ -13,12 +13,14 @@ def profile(data):
     """
     This function is to do EDA
     :param data: data input
-    :return pf: format of explored result
     """
     import pandas_profiling
+    print('\033[1m' + 'Data types and null:' + '\033[0m')
+    print(data.info())
+    print('\033[1m' + 'Descriptive statistics' + '\033[0m')
+    display(data.describe())
     pf = pandas_profiling.ProfileReport(data)
     display(pf)
-    return pf
 
 # class eda(object):
 #
