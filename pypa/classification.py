@@ -38,7 +38,7 @@ def model_list():
     """
     models = [('Logistic', LogisticRegression(max_iter=1000)),
               ('Linear-Discriminant-Analysis', LinearDiscriminantAnalysis()),
-              ('Gaussian_Naive_Bayes ', GaussianNB()),
+              ('Gaussian_Naive_Bayes ', GaussianNB())]
               ('Support-Vector-Class', SVC()),
               ('K-Nearest-Class', KNeighborsClassifier()),
               ('Decision_Tree_Class', DecisionTreeClassifier()),
@@ -58,12 +58,13 @@ def models_comparer(list_of_model, x, y):
     names = []
     for name, model in list_of_model:
         kfold = KFold(n_splits=10, random_state=7)
-        cv_results = cross_val_score(model, X, y.values.ravel(),
+        cv_results = cross_val_score(model, x, y.values.ravel(),
                                      cv=kfold, scoring='roc_auc')
         results.append(cv_results)
         names.append(name)
         msg = '%s: %f (%f)' % (name, cv_results.mean(), cv_results.std())
         print(msg)
+    plot_result(results, names)
     return results, names
 
 
@@ -85,12 +86,12 @@ def plot_result(results, names):
 
 # class model_selector():
 #
-#     def __init__(self, x, y):
-#         self.models = self.model_group()
-#         self.results, self.names = self.models_comparer(self.models, x, y)
+#     def __init__(self):
+#         self.models = self.model_list()
+#         self.results, self.names = self.models_comparer(self.models, self.x, self.y)
 #         self.plot_result(self.results, self.names)
 #
-#     def model_group(self):
+#     def model_list(self):
 #         """
 #         This function is to configure a number of models which will compete with each other
 #         . Each model has the default configuration
@@ -118,7 +119,7 @@ def plot_result(results, names):
 #         names = []
 #         for name, model in models:
 #             kfold = KFold(n_splits=10, random_state=7)
-#             cv_results = cross_val_score(model, X, y.values.ravel(), cv=kfold, scoring='roc_auc')
+#             cv_results = cross_val_score(model, x, y.values.ravel(), cv=kfold, scoring='roc_auc')
 #             results.append(cv_results)
 #             names.append(name)
 #             msg = '%s: %f (%f)' % (name, cv_results.mean(), cv_results.std())
@@ -142,7 +143,7 @@ def plot_result(results, names):
 #
 #
 # class main():
-#     model_selector = model_selector(x, y)
+#     model_selector = model_selector()
 #
 #
 # if __name__ == '__main__':
