@@ -38,7 +38,7 @@ def model_list():
     """
     models = [('Logistic', LogisticRegression(max_iter=1000)),
               ('Linear-Discriminant-Analysis', LinearDiscriminantAnalysis()),
-              ('Gaussian_Naive_Bayes ', GaussianNB())]
+              ('Gaussian_Naive_Bayes ', GaussianNB()),
               ('Support-Vector-Class', SVC()),
               ('K-Nearest-Class', KNeighborsClassifier()),
               ('Decision_Tree_Class', DecisionTreeClassifier()),
