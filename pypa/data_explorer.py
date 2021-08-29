@@ -5,22 +5,58 @@ Dated: August 21th, 2021
 """
 import pandas as pd
 import numpy as np
-import dataset_calling
+import pypa.dataset_calling
 from IPython.display import display, HTML, clear_output, update_display
 
 
-def profile(data):
+def investor(data,
+            feature,
+            label,
+            profile=False,
+            sweetplot=False,
+            autoplot=False,
+            dtale=False
+            ):
     """
-    This function is to do EDA
-    :param data: data input
+    This function is do EAD both descriptive statistics and visualization
+    :param data:
+    :param feature: list of features
+    :param label: target variable
+    :param profile: using pandas-profiling
+    :param sweetplot: using sweetvis
+    :param autoplot: using autovis
+    :param dtale: using D-tale
+    :return state: result of EDA
     """
-    import pandas_profiling
-    print('\033[1m' + 'Data types and null:' + '\033[0m')
-    print(data.info())
-    print('\033[1m' + 'Descriptive statistics' + '\033[0m')
-    display(data.describe())
-    pf = pandas_profiling.ProfileReport(data)
-    display(pf)
+    # print('\033[1m' + 'Data types and nullit:' + '\033[0m')
+    # print(data.info())
+    # print('\033[1m' + 'Descriptive statistics' + '\033[0m')
+    # display(data.describe())
+    if profile:
+        import pandas_profiling
+        pf = pandas_profiling.ProfileReport(data)
+        display(pf)
+        state = 'EDA WITH PROFILE IS DONE'
+    elif sweetplot:
+        import sweetviz
+        my_report = sweetviz.analyze([data, 'Train'],
+                                     target_feat=label)
+        my_report.show_html('FinalReport.html')
+        state = 'EDA WITH SWEETPLOT IS DONE'
+    else:
+        if autoplot:
+            from autoviz.AutoViz_Class import AutoViz_Class
+            AV = AutoViz_Class()
+            df = AV.AutoViz(data)
+            print('Sorry, this task is under construction')
+        elif dtale:
+            import dtale
+            d = dtale.show(data)
+            d.open_browser()
+            state = 'EDA WITH D-TALE IS DONE'
+    return state
+
+
 
 # class eda(object):
 #

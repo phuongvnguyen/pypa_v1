@@ -1,6 +1,7 @@
 # Git ignore file with the following format
 *.[oa]
 *~
+*.html
 .DS_Store
 .idea/
 pypa/__pycache__/
